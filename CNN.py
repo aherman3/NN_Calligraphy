@@ -1,17 +1,11 @@
 #!/usr/bin/env python3
 
-from operator import mod
 import os
 import torch
 import torchvision
-from torchvision.datasets.utils import download_url
-from torch.utils.data import random_split
 from torchvision.datasets import ImageFolder
 from torchvision.transforms import ToTensor
 from torch.utils.data.dataloader import DataLoader
-from torchvision.utils import make_grid
-import matplotlib
-import matplotlib.pyplot as plt
 import torch.nn as nn
 import torch.nn.functional as F
 from tqdm import tqdm
