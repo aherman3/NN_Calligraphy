@@ -154,8 +154,13 @@ def main():
     test_dl = DeviceDataLoader(DataLoader(test, batch_size*2), device)
 
     model = CNNModel()
+    device = get_default_device()
 
-    history = fit(5, 0.01, model, train_dl, val_dl)
+    train_dl = DeviceDataLoader(train_dl, device)
+    val_dl = DeviceDataLoader(val_dl, device)
+    to_device(model, device)
+
+    history = fit(6, 0.001, model, train_dl, val_dl, torch.optim.Adam)
 
     result = evaluate(model, test_dl)
     print(result)
