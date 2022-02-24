@@ -41,9 +41,9 @@ class ImageClassificationBase(nn.Module):
             torch.save(model.state_dict(), 'cifar10-cnn.pth')
         
         
-    def accuracy(outputs, labels):
-        _, preds = torch.max(outputs, dim=1)
-        return torch.tensor(torch.sum(preds == labels).item() / len(preds))
+def accuracy(outputs, labels):
+    _, preds = torch.max(outputs, dim=1)
+    return torch.tensor(torch.sum(preds == labels).item() / len(preds))
 
 class CNNModel(ImageClassificationBase):
     def __init__(self):
@@ -117,7 +117,7 @@ def fit(epochs, lr, model, train_loader, val_loader, opt_func=torch.optim.SGD):
         # Training Phase 
         model.train()
         train_losses = []
-        for batch in tqdm(train_loader):
+        for batch in train_loader:
             loss = model.training_step(batch)
             train_losses.append(loss)
             loss.backward()
